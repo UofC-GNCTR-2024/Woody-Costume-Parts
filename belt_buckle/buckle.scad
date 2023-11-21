@@ -1,6 +1,11 @@
 include <BOSL2/std.scad>;
+include <fillet.scad>;
 
 $fn = 30;
+
+// Fillet params
+fillet_r = 4;
+fillet_steps = 4;
 
 // Plate parameters
 plate_w = 77;
@@ -148,35 +153,38 @@ module back_text()
 
 module buckle()
 {
-    difference() {
-        // Plate
-        zflip()
-        down(curve_r + rounding_d/2)
-        plate();
-		if (include_signature) {
-            // Debossed signature
-            back(plate_w/2)
-            back_text();
+	myfillet(r=fillet_r, steps=fillet_steps) {
+		difference() {
+			// Plate
+			zflip()
+			down(curve_r + rounding_d/2)
+			plate();
+			if (include_signature) {
+				// Debossed signature
+				back(plate_w/2)
+				back_text();
+			}
 		}
-    }
-    
-    // Features
-    up(plate_t) {
-        // Top Holder
-        back(plate_w/2 + holder_spacing/2)
-        holder(false);
-        
-        // Bottom holder
-        back(plate_w/2 - holder_spacing/2 - holder_t)
-        holder(true);
-        
-        // Nub
+
+		// Features
+		up(plate_t)
+		// Top Holder
+		back(plate_w/2 + holder_spacing/2)
+		holder(false);
+		
+		// Bottom holder
+		up(plate_t)
+		back(plate_w/2 - holder_spacing/2 - holder_t)
+		holder(true);
+		
+		// Nub
+		up(plate_t)
         back(plate_w/2)
         // Nub position
         yrot(a=nub_arc, cp=[0, 0, curve_r])
         yrot(a=nub_angle)  // Extra angling
         nub();
-    }
+	}
 }
 
 
