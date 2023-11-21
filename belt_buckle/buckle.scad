@@ -12,7 +12,7 @@ plate_w = 77;
 plate_l = 101;
 plate_t = 2.5;
 curve_r = 225;
-rounding_d = 0; //0.75;  // TODO: Set this
+rounding_d = 0.75;  // TODO: Set this
 
 curve_fn = 500;  // TODO Set this
 ellipse_fn = 100;
@@ -44,7 +44,7 @@ line2 = "UCalgary GNCTR 2023";
 back_text_size = 2;
 line_spacing = 2*back_text_size;
 text_depth = 0.5;
-include_signature = false;  // TODO: Enable (takes a lot of time)
+include_signature = true;  // TODO: Enable (takes a lot of time)
 
 
 module plate()
