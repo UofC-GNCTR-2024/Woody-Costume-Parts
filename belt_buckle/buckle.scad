@@ -206,9 +206,7 @@ module logo() {
 	//left(40.7)
 	resize([0, plate_w - 2*y_padding, 0], auto=true)
 	left(88.25)
-	import(
-		"/home/toshi/gnctr/logo/logo_inside.svg"
-	);
+	import("logo.svg");
 }
 
 
